@@ -24,11 +24,10 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/top') }}">
                     DanceNavi
                 </a>
             </div>
-            <a href="{{route('top')}}"><button>一般ユーザートップページへ</button></a>
             <div class="my-navbar-control">
             @if(Auth::check())
                 <span class="my-navbar-item">{{ Auth::user()->name }}</span>
@@ -48,6 +47,7 @@
                     /
                 <a class="my-navbar-item" href="{{ route('register') }}">会員登録</a>
             @endif
+            /<a href="{{ url('/') }}">管理者トップ</a>
         </div>
         </nav>
         @yield('content')

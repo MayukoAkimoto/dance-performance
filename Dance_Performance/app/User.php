@@ -17,6 +17,11 @@ class User extends Authenticatable
     }
 
 
+    public function getIsAdminAttribute() {
+
+        return (auth()->user()->role == 'admin');
+    
+    }
     use Notifiable;
 
     /**

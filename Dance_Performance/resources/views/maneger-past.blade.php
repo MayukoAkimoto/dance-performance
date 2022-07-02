@@ -1,9 +1,8 @@
 @extends('layouts.layout')
-<!-- 管理者のトップページ -->
+<!-- 管理者の過去公演一覧 -->
 @section('content')
 <div class="mng-container" >
-    <a href="{{route('performance.create')}}"><button id="mng-btn" >新規作成</button></a>
-    <a href="{{route('past')}}"><button id="mng-btn" >過去公演一覧へ</button></a>
+    <a href="{{url('/')}}"><button id="mng-btn" >未実施公演一覧へ</button></a>
 </div>
 <table class='table'>
     <thead>
@@ -20,7 +19,7 @@
             <th scope='col'>{{ $performance['date1']}}{{ $performance['date2']}}</th>
             <th scope='col'>{{ $performance['title']}}</th>
             <th scope='col'>
-                <a href="{{ route('performance.detail',['performance' => $performance['id']])}}">詳細</a>
+                <a href="{{ route('past.comment',['performance' => $performance['id']]) }}">詳細</a>
             </th>
             <th scope='col'>
                 <a href="{{ route('performance.edit',['performance' => $performance['id']])}}">更新</a>

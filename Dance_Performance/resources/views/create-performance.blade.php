@@ -1,18 +1,33 @@
 @extends('layouts.layout')
 <!-- 管理者の新規公演追加 -->
 @section('content')
-<form action="{{ route('performance.create')}}" method="post">
+<div>
+<div class='panel-body'>
+                            @if($errors->any())
+                            <div class='alert'>
+                                <ul>
+                                    @foreach($errors->all() as $message)
+                                    <li>{{ $message }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
+                        </div>
+
+<form action="{{ route('performance.create')}}" enctype="multipart/form-data" method="post" class="form" >
                             @csrf
-                            <label for='title'>タイトル</label>
-                                <input type='text' class='form-control' name='title'/>
+                            <label for='title' class='mt-2'>タイトル</label>
+                                <input type='text' class='form-control' name='title' value="{{ old('title') }}"/>
                             <label for='date1' class='mt-2'>日付</label>
-                                <input type='datetime-local' class='form-control' name='date1' id='date1'/>
+                                <input type='datetime-local' class='form-control' name='date1' id='date1' value="{{ old('date1') }}"/>
                             <label for='date2' class='mt-2'>日付</label>
-                                <input type='datetime-local' class='form-control' name='date2' id='date2'/>
-                            <label for='price'>金額</label>
-                                <input type='text' class='form-control' name='price'/>
-                            <label for='venue' class='mt-2'>会場</label>
-                            <a href="{{route('venue.create')}}">新規追加</a>
+                                <input type='datetime-local' class='form-control' name='date2' id='date2' value="{{ old('date2') }}"/>
+                            <label for='price' class='mt-2'>金額</label>
+                                <input type='text' class='form-control' name='price' valeu="{{ old('price') }}"/>
+                            <div class="venue">
+                                <label for='venue' class='mt-2'>会場</label>
+                                <a href="{{route('venue.create')}}">会場の新規追加</a>
+                            </div>
                             <select name='venue_id' class='form-control'>
                                 <option value='' hidden>会場名</option>
                                 @foreach($venues as $venue)
@@ -20,12 +35,14 @@
                                 @endforeach
                             </select>
                             <label for='member' class='mt-2'>出演者</label>
-                                <textarea class='form-control' name='member'></textarea>
+                                <textarea class='form-control' name='member'>{{ old('member') }}</textarea>
                             <label for='comment' class='mt-2'>説明</label>
-                                <textarea class='form-control' name='comment'></textarea>
-                            <div class='row justify-content-center'>
-                                <button type='submit' class='btn btn-primary w-25 mt-3'>登録</button>
+                                <textarea class='form-control' name='comment'>{{ old('comment') }}</textarea>
+                            <label for='comment' class='mt-2'>写真</label>
+                                <input type="file" name="image">
+                            <div class='row'>
+                                <button type='submit' class='form-btn'>登録</button>
                             </div> 
                         </form>
-
+</div>
 @endsection

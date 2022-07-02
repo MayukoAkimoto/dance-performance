@@ -1,39 +1,39 @@
 @extends('layouts.layout')
 
 @section('content')
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col col-md-offset-3 col-md-6">
-        <nav class="card mt-5">
-          <div class="card-header">会員登録</div>
-          <div class="card-body">
+  <div>
+    <div class="row">
+      <div >
+        <nav>
+          <div class="login">会員登録</div>
+          <div >
             @if($errors->any())
-              <div class="alert alert-danger">
+              <div class="alert">
                 @foreach($errors->all() as $message)
                   <p>{{ $message }}</p>
                 @endforeach
               </div>
             @endif
-            <form action="{{ route('register') }}" method="POST">
+            <form action="{{ route('register') }}" method="POST" class="form">
               @csrf
-              <div class="form-group">
+              <div>
                 <label for="email">メールアドレス</label>
                 <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}" />
               </div>
-              <div class="form-group">
+              <div>
                 <label for="name">ユーザー名</label>
                 <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" />
               </div>
-              <div class="form-group">
+              <div>
                 <label for="password">パスワード</label>
                 <input type="password" class="form-control" id="password" name="password">
               </div>
-              <div class="form-group">
+              <div>
                 <label for="password-confirm">パスワード（確認）</label>
                 <input type="password" class="form-control" id="password-confirm" name="password_confirmation">
               </div>
-              <div class="text-right">
-                <button type="submit" class="btn btn-primary">送信</button>
+              <div>
+                <button type="submit" class="login-btn">送信</button>
               </div>
             </form>
           </div>

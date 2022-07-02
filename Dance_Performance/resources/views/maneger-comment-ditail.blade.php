@@ -1,6 +1,10 @@
 @extends('layouts.layout')
 <!-- 感想詳細画面 -->
 @section('content')
+<div class="mng-container" >
+    <a href="{{route('past')}}"><button id="mng-btn" >過去公演一覧へ</button></a>
+</div>
+
 <div class="performance">
     <div calss="performance-texts">
         <p class="performance-text">タイトル：{{ $performance['title']}}</p>
@@ -16,10 +20,6 @@
     @else
         <img src="{{ asset($performance['image']) }}" calss="image" >
     @endif
-</div>
-<div class="btns">
-    <a href="{{route('comment.top')}}">＜　一覧に戻る</a>
-    <a href="{{ route('comment.create',['performance' => $performance['id'] ]) }}"><button class="btn">感想を投稿する</button></a>
 </div>
 <table class='table'>
     <thead>
