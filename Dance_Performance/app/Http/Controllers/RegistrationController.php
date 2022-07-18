@@ -16,7 +16,6 @@ use App\Book;
 use App\Comment;
 use Illuminate\Support\Facades\DB;
 
-
 class RegistrationController extends Controller
 {
     //公演新規追加画面に会場を表示
@@ -48,6 +47,31 @@ class RegistrationController extends Controller
         $performance->save();
 
         return redirect('/');
+    }
+    //プロフィール編集
+    public function profileEditForm(User $user){
+        return view('profile-edit',[
+            'user' => $user,
+        ]);
+    }
+    public function profileEdit(User $user,Request $request){
+        if(!empty($request->image)) {
+            $dr = 'img';
+            $file_name = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('public/' . $dr, $file_name);
+        }
+        $columns = ['name','email','password'];
+
+        foreach($columns as $column){
+            $user->$column = $request->$column;
+        }
+        if(!empty($request->image)) {
+            $user->image = 'storage/' . $dr . '/' . $file_name;
+        }
+        $user->save();
+
+        return redirect()->route('profile', [$user['id']]);
+
     }
     //会場新規追加
     public function createVenueForm(){
@@ -82,17 +106,17 @@ class RegistrationController extends Controller
             $file_name = $request->file('image')->getClientOriginalName();
             $request->file('image')->storeAs('public/' . $dr, $file_name);
         }
-        $performances = new Performance;
-        $record = $performances->find($performance['id']);
+        // $performances = new Performance;
+        // $record = $performances->find($performance['id']);
         $columns = ['title','date1','date2','venue_id','price','member','comment'];
 
         foreach($columns as $column){
-            $record->$column = $request->$column;
+            $performance->$column = $request->$column;
         }
         if(!empty($request->image)) {
-            $record->image = 'storage/' . $dr . '/' . $file_name;
+            $performance->image = 'storage/' . $dr . '/' . $file_name;
         }
-        $record->save();
+        $performance->save();
 
         return redirect('/');
     }
@@ -140,16 +164,16 @@ class RegistrationController extends Controller
         ]);
     }
     public function editBook(Book $book,CreateBook $request){
-        $books = new Book;
-        $record = $books->find($book['id']);
+        // $books = new Book;
+        // $record = $books->find($book['id']);
         $columns = ['pfm_id','user_id','ticket','date'];
         foreach($columns as $column){
-            $record->$column = $request->$column;
+            $book->$column = $request->$column;
         }
     
-        $record->save();
+        $book->save();
 
-        return redirect()->route('performance.detail', [$record['pfm_id']]);
+        return redirect()->route('performance.detail', [$book['pfm_id']]);
 
     }
     //予約の削除
@@ -181,19 +205,68 @@ class RegistrationController extends Controller
         foreach($columns as $column){
             $book->$column = $request->$column;
         }
-    
+
         Auth::user()->book()->save($book);//ログイン中のユーザーのIDをuser_idに入れてる
 
         return redirect()->route('book.detail', [$performance]);
     }
+    //ユーザーの予約編集
+    //予約を編集
+    public function bookEditForm(Book $book){
+        $id = $book['id'];
+        $books = new Book;
+        $performances = new Performance;
+        $result = $books->join('users','books.user_id','users.id')->find($book['id'])->toArray();
+        $performance = $performances->where('id',$result['pfm_id'])->get()->toArray();
+        return view('book-edit',[
+            'id' => $id,
+            'result' => $result,
+            'performance' => $performance,
+        ]);
+    }
+    public function bookEdit(Book $book,CreateBook $request){
+        // $books = new Book;
+        // $record = $books->find($book['id']);
+        $columns = ['pfm_id','user_id','ticket','date'];
+        foreach($columns as $column){
+            $book->$column = $request->$column;
+        }
+    
+        // $record->pfm_id = $request->pfm_id;
+        // $record->user_id = $request->user_id;
+        // $record->ticket = $request->ticket;
+        // $record->date = $request->date.':00';
+
+        // $requestData = $book->all();
+        // $requestData['date'] .= ':00';
+        // $event = new Book($requestData);
+        // var_dump($event);
+        // $event->save();
+
+        $book->save();
+
+        return redirect()->route('profile', [$book[Auth::user()->id]]);
+
+    }
+
     //感想投稿
     public function createCommentForm(Performance $performance){
         $id = $performance;
         $performanceall = new Performance;
         $performances = $performanceall->find($performance['id'])->toArray();
+
+        $comments = new Comment;
+        $performance_with_venue = $performanceall
+                                 ->join('venues','performances.venue_id','venues.id')->find($performance['id']);
+        $comment = $comments->join('users','comments.user_id','users.id')->where('pfm_id', $performance['id'] )->get()->toArray();
+
+    
         return view('create-comment',[
             'id' => $id,
-            'performance' => $performances,
+            'performances' => $performances,
+            'performance' => $performance_with_venue,
+            'comments' => $comment,
+
         ]);
     }
     public function createComment(Performance $performance,CreateComment $request){

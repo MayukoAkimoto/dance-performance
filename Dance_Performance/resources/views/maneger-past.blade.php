@@ -14,18 +14,22 @@
          </tr>
     </thead>
     <tbody>
+    <input type="hidden" id="count" value=10>
     @foreach($performances as $performance)
         <tr>
-            <th scope='col'>{{ $performance['date1']}}{{ $performance['date2']}}</th>
+            <th scope='col'>{{ $performance['date1']->format('Y-m-d H:i')}}{{ $performance['date2']->format('Y-m-d H:i')}}</th>
             <th scope='col'>{{ $performance['title']}}</th>
             <th scope='col'>
-                <a href="{{ route('past.comment',['performance' => $performance['id']]) }}">詳細</a>
+                <a href="{{ route('comment.detail',['performance' => $performance['id']]) }}">詳細</a>
             </th>
             <th scope='col'>
                 <a href="{{ route('performance.edit',['performance' => $performance['id']])}}">更新</a>
             </th>
         </tr>
     @endforeach
+    <tr id="content"></tr>
+
     </tbody>
 </table>
+
 @endsection

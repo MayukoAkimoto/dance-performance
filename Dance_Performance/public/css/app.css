@@ -13,28 +13,19 @@
     color: #9561e2;
     font-size: 150%;
 }
-.login {
-    font-size: 20px;
-}
-.login-btn {
-    background: #9561e2;
-    color: #fff;
-    padding: 16px 40px;
-    text-decoration: none; 
-    border-radius: 30px;
-    margin-top: 5%;
-    margin-bottom: 5%;
-}
 .top {
     display: flex;
     justify-content: space-around;
 }
 #top-button {
-    background: #9561e2;
-    color: #fff;
     padding: 16px 40px;
-    text-decoration: none; 
-    border-radius: 30px; }
+    font-size: 15px;
+}
+#icon {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
 .container {
     display: flex;
     justify-content: center;
@@ -43,12 +34,13 @@
     font-size: 40px;
 }
 table {
-    width: 80%;
+    width: 90%;
     margin-left: 5%;
     margin-top: 5%;
 }
-th,td {
+th {
     padding: 10px;
+    border-bottom: 2px dashed rgb(60, 58, 58);
 }
 #serch {
     display: flex;
@@ -78,12 +70,11 @@ th,td {
     justify-content: space-around;
 }
 #mng-btn {
-    background: #f29b05;
-    color: #fff;
     padding: 16px 40px;
-    text-decoration: none; 
-    border-radius: 30px;
     font-size: 15px;
+    background-color: #fff;
+    border-color: #fadd37;
+    margin-top: 5%;
 }
 .form {
     width: 70%;
@@ -103,12 +94,11 @@ th,td {
     justify-content: center;
 }
 .form-btn {
-    background: #04a2d7;
-    color: #fff;
     padding: 16px 40px;
-    text-decoration: none; 
-    border-radius: 30px;
     font-size: 15px;
+    background-color: #fff;
+    border-color: #fadd37;
+    margin-top: 5%;
 }
 .venue {
     display: flex;
@@ -122,44 +112,45 @@ th,td {
     justify-content: space-around;
 }
 .edit-btn1 {
-    background: #04a2d7;
-    color: #fff;
+    width: 200px;
+    margin-top: 5%;
     padding: 16px 40px;
-    text-decoration: none; 
-    border-radius: 30px;
     font-size: 15px;
+    background-color: #fff;
+    border-color: #fadd37;
 }
 .edit-btn2 {
-    background: #d71604;
-    color: #fff;
-    padding: 16px 40px;
-    text-decoration: none; 
-    border-radius: 30px;
+    width: 150px;
+    height: 50px;
     font-size: 15px;
+    background-color: #fff;
+    border-color: #f65959;
 }
 .edit-btn3 {
-    background: #decf07;
-    color: #fff;
-    padding: 16px 40px;
-    text-decoration: none; 
-    border-radius: 30px;
+    width: 150px;
+    height: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
     font-size: 15px;
+    background-color: #fff;
+    border-color: #66f587;
 }
 .edit-btn4 {
-    background: #d72b04;
-    color: #fff;
-    padding: 16px 40px;
-    text-decoration: none; 
-    border-radius: 30px;
+    width: 150px;
+    height: 50px;
     font-size: 15px;
+    background-color: #fff;
+    border-color: #6698f5;
 }
 .performance{
     display: flex;
     justify-content: center;
 }
-img {
-    width: 30%;
+#img {
+    width: 200px;
+    height: 200px;
     object-fit: contain;
+    margin-left: 40%;
 }
 .btns {
     width: 70%;
@@ -168,13 +159,286 @@ img {
     justify-content: space-between;
 }
 .btn {
-    background: #f29b05;
-    color: #fff;
+    margin-top: 5%;
     padding: 16px 40px;
-    text-decoration: none; 
-    border-radius: 30px;
     font-size: 15px;
 }
 .form-ticket {
     width: 30%;
+    margin-left: 35%;
+}
+.alert {
+    width: 50%;
+    margin-left: 25%;
+    color: #d71604;
+    background-color: #fccfc5;
+    border-radius: 10px;
+    text-align: center;
+}
+.space {
+    color: #d72b04;
+    font-size: 5%;
+}
+.pfm {
+    width: 90%;
+    margin-left: 5%;
+    display: flex;
+    border:solid;
+    border-color: #f0e190;
+}
+.pfmmore {
+    width: 90%;
+    margin-left: 5%;
+    display: flex;
+    border:solid;
+    border-color: #f0e190;
+}
+.image {
+    align-items: center;
+}
+.text {
+    width: 90%;
+}
+.book-btn {
+    width: 100px;
+    height: 60px;
+    margin-left: 70%;
+    font-size: 15px;
+    background-color: #fff;
+    border-color: #fadd37;
+}
+.title {
+    font-size: 20px;
+}
+.pfm-text {
+    width: 50%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+#pfm-img {
+    width: 500px;
+    height: 500px;
+    object-fit: contain;
+}
+.pfm-ditail {
+    display: flex;
+    width: 90%;
+    margin-left: 5%;
+}
+.pfm-image {
+    width: 50%;
+}
+.performance-text {
+    border-bottom: 2px dashed rgb(60, 58, 58);
+}
+.pfm-title {
+    text-align: center;
+    font-size: 30px;
+}
+.com-box {
+    display: flex;
+    justify-content: space-between;
+}
+.com-icon-box {
+    display: flex;
+}
+#com-icon {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+.com-name {
+    margin-left: 20px;
+}
+.comment {
+    width: 90%;
+    margin-left: 5%;
+}
+.com {
+    border: solid;
+}
+.menues {
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 3%;
+    display: flex;
+    justify-content: space-between;
+}
+.menues-btn {
+    height: 50px;
+    background-color: #f8f9d4;
+    border-color: #fadd37;
+}
+.menue-btn {
+    margin-left: 75%;
+    margin-top: 3%;
+    height: 50px;
+    background-color: #f8f9d4;
+    border-color: #fadd37;
+}
+.bookform {
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 5%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    text-align: center;
+    border: solid;
+    border-color: #fadd37;
+}
+.book-btn {
+    margin-left: 75%;
+    margin-bottom: 2%;
+    height: 50px;
+    border-color: #fadd37;
+    background-color: #fff;
+
+}
+.ticket-box {
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+    width: 70%;
+    margin-left: 15%;
+    padding: 10px;
+}
+.ticket-box-text {
+    font-size: 25px;
+}
+.total-ticket {
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    margin-left: 15%;
+    text-align: center;
+}
+.date1 {
+    border: solid;
+    border-color: #e497f4;
+    padding: 10px;
+}
+.date2 {
+    border: solid;
+    border-color: #97e8f4;
+    padding: 10px;
+}
+.com-btn {
+    width: 200px;
+    height: 50px;
+    border-color: #fadd37;
+    background-color: #fff;
+    font-size: 18px;
+    margin-left: 50%;
+}
+.comment-creat {
+    display: flex;
+    flex-flow: column;
+}
+.form-comment {
+    height: 100px;
+}
+.comment-btn {
+    width: 100px;
+    height: 50px;
+    margin-top: 5px;
+    border-color: #fadd37;
+    background-color: #fff;
+}
+.profile-box {
+    display: flex;
+    width: 60%;
+    margin-left: 20%;
+}
+.login-box {
+    display: flex;
+    flex-flow: column;
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 15%;
+    border: solid;
+    border-color: #fadd37;
+}
+.login-text{
+    text-align: center;
+}
+.login-item{
+    display: flex;
+    flex-flow: column;
+}
+.login-control {
+    width: 60%;
+    margin-left: 20%;
+    height: 30px;
+}
+.login-btn{
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+}
+.log-btn {
+    width: 30%;
+    margin-left: 35%;
+    height: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-color: #fadd37;
+    background-color: #fff;
+}
+.more-box {
+    width: 100%;
+}
+.more {
+    width: 10%;
+    height: 30%;
+    margin-left: 45%;
+    margin-top: 2%;
+    background-color: #fff;
+    border-color: #fadd37;
+}
+.back-box {
+    width: 100%;
+}
+.back {
+    margin-left: 15%;
+}
+.profile-edit {
+    margin-top: 10%;
+    margin-left: 5%;
+}
+.ditail-box {
+    display: flex;
+    width: 100%;
+}
+.ditail-1 {
+    margin-left: 10%;
+    width: 80%;
+}
+.ditail-2 {
+    margin-top: 7.5%;
+    display: flex;
+    flex-flow: column;
+}
+.ditail-btn {
+    margin-bottom: 18%;
+    border-color: #fadd37;
+    background-color: #fff;
+    width: 100px;
+    height: 40px;
+    font-size: 15px;
+}
+.profile-box2 {
+    display: flex;
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 5%;
+    border: solid;
+    border-color: #fadd37;
+}
+#icon2 {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+
 }

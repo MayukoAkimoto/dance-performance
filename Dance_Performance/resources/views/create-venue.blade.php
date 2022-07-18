@@ -23,4 +23,7 @@
                             </div>
                         </form>
 </div>
+<div class="back-box">
+<a href="{{url('/create_performance')}}" class="back">＜　新規作成へ戻る</a>
+</div>
 @endsection

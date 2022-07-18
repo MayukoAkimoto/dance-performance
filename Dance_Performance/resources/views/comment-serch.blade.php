@@ -5,33 +5,41 @@
     <h4 class="title" >公演の感想</h4>
 </div>
 <div id="serch">
-    <form action="{{ route('comment.serch') }}" method="GET" class="serch-form">
+    <form action="{{ route('book.serch') }}" method="GET" class="serch-form">
         <input type="text" name="keyword" value="" class="serch-box">
         <input type='date'  name='date' value="" class="serch-date">
         <input type="submit" value="検索" class="serch-bottun">
     </form>
 </div>
-<div class="back" >
-    <a href="{{route('comment.top')}}" class="back-text" >＜　一覧に戻る</a>
+<div class="menues">
+    <a href="{{ route('comment.top') }}"><button class="menues-btn">＜　一覧に戻る</button></a>
+    <a href="{{ route('book.top') }}"><button class="menues-btn">公演の予約をする　＞</button></a>
 </div>
 <table class='table'>
-    <thead>
-        <tr>
-            <th scope='col'>日付</th>
-            <th scope='col'>タイトル</th>
-            <th scope='col'>詳細</th>
-         </tr>
-    </thead>
     <tbody>
+    <input type="hidden" id="count" value=10>
+
     @foreach($posts as $post)
         <tr>
-            <th scope='col'>{{ $post['date1']}}{{ $post['date2']}}</th>
-            <th scope='col'>{{ $post['title']}}</th>
-            <th scope='col'>
-                <a href="{{ route('comment.detail',['performance' => $post['id']]) }}">詳細</a>
+            <th scope='col' class="pfm">
+                <div class="image">
+                @if($post['image'] == '' )
+                    <img src="{{ asset('storage/img/noimage.jpg') }}" id="img" >
+                @else
+                    <img src="{{ asset($post['image']) }}" id="img" >
+                @endif
+                </div>
+                <div class="text">
+                    <p class="title">{{ $post['title']}}</p>
+                    <p class="date">{{ $post['date1']->format('Y-m-d H:i')}}</p>
+                    <p class="date">{{ $post['date2']->format('Y-m-d H:i')}}</p>
+                    <a href="{{ route('comment.detail',['performance' => $post['id']]) }}"><button class="book-btn">詳細</button></a>
+                </div>
             </th>
         </tr>
     @endforeach
+        <tr id="content"></tr>
+
     </tbody>
 </table>
 @endsection

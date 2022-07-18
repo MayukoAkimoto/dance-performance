@@ -5,11 +5,9 @@
 <div class='panel-body'>
                             @if($errors->any())
                             <div class='alert'>
-                                <ul>
                                     @foreach($errors->all() as $message)
-                                    <li>{{ $message }}</li>
+                                    <p>{{ $message }}</p>
                                     @endforeach
-                                </ul>
                             </div>
                             @endif
                         </div>
@@ -34,7 +32,7 @@
                                 <option value="{{ $venue['id']}}">{{ $venue['name'] }}</option>
                                 @endforeach
                             </select>
-                            <label for='member' class='mt-2'>出演者</label>
+                            <label for='member' class='mt-2'>出演者<p class="space">※スペースを入力しないでください</p></label>
                                 <textarea class='form-control' name='member'>{{ old('member') }}</textarea>
                             <label for='comment' class='mt-2'>説明</label>
                                 <textarea class='form-control' name='comment'>{{ old('comment') }}</textarea>
@@ -44,5 +42,8 @@
                                 <button type='submit' class='form-btn'>登録</button>
                             </div> 
                         </form>
+</div>
+<div class="back-box">
+<a href="{{url('/')}}" class="back">＜　一覧 へ戻る</a>
 </div>
 @endsection

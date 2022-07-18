@@ -8,8 +8,8 @@
 <div class="performance">
     <div calss="performance-texts">
         <p class="performance-text">タイトル：{{ $performance['title']}}</p>
-        <p class="performance-text">日時：{{ $performance['date1']}}</p>
-        <p class="performance-text">日時：{{ $performance['date2']}}</p>
+        <p class="performance-text">日時：{{ $performance['date1']->format('Y-m-d H:i')}}</p>
+        <p class="performance-text">日時：{{ $performance['date2']->format('Y-m-d H:i')}}</p>
         <p class="performance-text">会場：{{ $performance['name']}}</p>
         <p class="performance-text">金額：{{ $performance['price']}}</p>
         <p class="performance-text">出演者：{{ $performance['member']}}</p>
@@ -25,6 +25,7 @@
     <thead>
         <tr>
             <th scope='col'>日付</th>
+            <th scope='col'></th>
             <th scope='col'>名前</th>
             <th scope='col'>感想</th>
          </tr>
@@ -33,6 +34,13 @@
     @foreach($comments as $comment)
         <tr>
             <th scope='col'>{{ $comment['created_at']}}</th>
+            <th scope='col'>
+            @if($comment['image'] == '' )
+        <img src="{{ asset('storage/img/profile_icon.png') }}" class="icon" >
+    @else
+        <img src="{{ asset($comment['image']) }}" calss="icon" >
+    @endif
+    </th>
             <th scope='col'>{{ $comment['name']}}</th>
             <th scope='col'>{{ $comment['comment']}}</th>
         </tr>

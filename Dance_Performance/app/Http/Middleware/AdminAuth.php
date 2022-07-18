@@ -21,7 +21,7 @@ class AdminAuth
 
         }
 
-        return redirect('/top');
+        return redirect('/book-top');
     }
     
 }

@@ -11,21 +11,27 @@
         <input type="submit" value="検索" class="serch-bottun">
     </form>
 </div>
+<div class="menue">
+    <a href="{{ route('book.top') }}"><button class="menue-btn">公演を予約する　＞</button></a>
+</div>
 <table class='table'>
-    <thead>
-        <tr>
-            <th scope='col'>日付</th>
-            <th scope='col'>タイトル</th>
-            <th scope='col'>詳細</th>
-         </tr>
-    </thead>
-    <tbody>
+<tbody>
     @foreach($performances as $performance)
         <tr>
-            <th scope='col'>{{ $performance['date1']}}{{ $performance['date2']}}</th>
-            <th scope='col'>{{ $performance['title']}}</th>
-            <th scope='col'>
-                <a href="{{ route('comment.detail',['performance' => $performance['id']]) }}">詳細</a>
+            <th scope='col' class="pfm">
+                <div class="image">
+                @if($performance['image'] == '' )
+                    <img src="{{ asset('storage/img/noimage.jpg') }}" id="img" >
+                @else
+                    <img src="{{ asset($performance['image']) }}" id="img" >
+                @endif
+                </div>
+                <div class="text">
+                    <p class="title">{{ $performance['title']}}</p>
+                    <p class="date">{{ $performance['date1']->format('Y-m-d H:i')}}</p>
+                    <p class="date">{{ $performance['date2']->format('Y-m-d H:i')}}</p>
+                    <a href="{{ route('comment.detail',['performance' => $performance['id']]) }}"><button class="book-btn">詳細</button></a>
+                </div>
             </th>
         </tr>
     @endforeach

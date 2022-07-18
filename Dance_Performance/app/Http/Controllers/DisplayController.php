@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\User;
 use App\Performance;
 use App\Book;
 use App\Comment;
@@ -20,7 +20,7 @@ class DisplayController extends Controller
     //管理者トップに公演の一覧を表示
     public function index(){
         $performance = new Performance;
-        $all = $performance->where('category',0)->get();
+        $all = $performance->where('category',0)->limit(10)->get();
         return view('maneger-top',[
             'performances' => $all,
         ]);
@@ -33,9 +33,9 @@ class DisplayController extends Controller
                                  ->join('venues','performances.venue_id','venues.id')->find($performance['id']);
         $bookid = $books->where('pfm_id' , $performance['id'])->get()->toArray();
         $book = $books->join('users','books.user_id','users.id')->where('pfm_id' , $performance['id'])->get()->toArray();
-        $date1 = $books->where([['pfm_id','=',$performance],['date','=',$performance_with_venue['date1']]] )
+        $date1 = $books->where([['pfm_id','=',$performance['id']],['date','=',$performance_with_venue['date1']]] )
                         ->selectRaw('SUM(ticket) AS total_ticket')->get();
-        $date2 = $books->where([['pfm_id','=',$performance],['date','=',$performance_with_venue['date2']]] )
+        $date2 = $books->where([['pfm_id','=',$performance['id']],['date','=',$performance_with_venue['date2']]] )
                         ->selectRaw('SUM(ticket) AS total_ticket')->get();
         return view('maneger-ditail',[
             'performance' => $performance_with_venue,
@@ -70,10 +70,22 @@ class DisplayController extends Controller
     public function top(){
         return view('top');
     }
+    //マイページ
+    public function profile(User $user){
+        $books = new Book;
+        $performances = new Performance;
+        $a = $performances->join('books','performances.id','books.pfm_id')->where('user_id',$user['id'])->where('category',0)->get()->toArray();
+        $book = $books->join('performances','books.pfm_id','performances.id')->where('user_id',$user['id'])->where('category',0)->get();
+        return view('profile',[
+            'user' => $user,
+            'books' => $book,
+            'a' => $a,
+        ]);
+    }
     //公演予約
     public function books(){
         $performance = new Performance;
-        $all = $performance->where('category',0)->get();
+        $all = $performance->where('category',0)->limit(10)->get();
         return view('book-top',[
             'performances' => $all,
         ]);
