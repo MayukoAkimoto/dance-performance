@@ -20,19 +20,22 @@ class DisplayController extends Controller
     //管理者トップに公演の一覧を表示
     public function index(){
         $performance = new Performance;
-        $all = $performance->where('category',0)->limit(10)->get();
+        $all = $performance->where('category',0)->orderBy('date1', 'asc')->limit(10)->get();
         return view('maneger-top',[
             'performances' => $all,
         ]);
     }
     //予約状況画面
     public function performanceDitail(Performance $performance){
+        $users = new User;
         $performances = new Performance;
         $books = new Book;
         $performance_with_venue = $performances
                                  ->join('venues','performances.venue_id','venues.id')->find($performance['id']);
-        $bookid = $books->where('pfm_id' , $performance['id'])->get()->toArray();
-        $book = $books->join('users','books.user_id','users.id')->where('pfm_id' , $performance['id'])->get()->toArray();
+        $book = $users->join('books','users.id','books.user_id')->where('pfm_id' , $performance['id'])->get()->toArray();
+        foreach($book as $key => $value){
+            $book[$key]['date'] = date( 'Y-m-d H:i', strtotime( $value['date'] ) );
+        }
         $date1 = $books->where([['pfm_id','=',$performance['id']],['date','=',$performance_with_venue['date1']]] )
                         ->selectRaw('SUM(ticket) AS total_ticket')->get();
         $date2 = $books->where([['pfm_id','=',$performance['id']],['date','=',$performance_with_venue['date2']]] )
@@ -40,7 +43,6 @@ class DisplayController extends Controller
         return view('maneger-ditail',[
             'performance' => $performance_with_venue,
             'books' => $book,
-            'bookid' => $bookid,
             'date1' => $date1,
             'date2' => $date2,
         ]);
@@ -74,18 +76,19 @@ class DisplayController extends Controller
     public function profile(User $user){
         $books = new Book;
         $performances = new Performance;
-        $a = $performances->join('books','performances.id','books.pfm_id')->where('user_id',$user['id'])->where('category',0)->get()->toArray();
-        $book = $books->join('performances','books.pfm_id','performances.id')->where('user_id',$user['id'])->where('category',0)->get();
+        $book = $performances->join('books','performances.id','books.pfm_id')->where('user_id',$user['id'])->where('category',0)->get()->toArray();
+        foreach($book as $key => $value){
+            $book[$key]['date'] = date( 'Y-m-d H:i', strtotime( $value['date'] ) );
+        }
         return view('profile',[
             'user' => $user,
             'books' => $book,
-            'a' => $a,
         ]);
     }
     //公演予約
     public function books(){
         $performance = new Performance;
-        $all = $performance->where('category',0)->limit(10)->get();
+        $all = $performance->where('category',0)->orderBy('date1', 'asc')->limit(10)->get();
         return view('book-top',[
             'performances' => $all,
         ]);
@@ -159,12 +162,14 @@ class DisplayController extends Controller
     public function commentDitail(Performance $performance){
         $performances = new Performance;
         $comments = new Comment;
+        $users = new User;
         $performance_with_venue = $performances
                                  ->join('venues','performances.venue_id','venues.id')->find($performance['id']);
-        $comment = $comments->join('users','comments.user_id','users.id')->where('pfm_id', $performance['id'] )->get()->toArray();
+        $comment = $users->join('comments','users.id','comments.user_id')->where('pfm_id', $performance['id'] )->get()->toArray();
         return view('comment-ditail',[
             'performance' => $performance_with_venue,
             'comments' => $comment,
+            'id' => $performance,
         ]);
     }
 

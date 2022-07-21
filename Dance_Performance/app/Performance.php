@@ -14,4 +14,7 @@ class Performance extends Model
     public function venue(){
         return $this->belongsTo('App\Venue','venue_id','id');
     }
+    public function book(){
+        return $this0>belongsTo('App\Book','id','pfm_id');
+    }
 }

@@ -12,7 +12,10 @@
     <div class="pfm-text">
         <p class="pfm-title">{{ $performance['title']}}</p>
         <p class="performance-text">日時：{{ $performance['date1']}}</p>
+        @if(!empty($performance['date2']))
         <p class="performance-text">日時：{{ $performance['date2']}}</p>
+        @else
+        @endif
         <p class="performance-text">会場：{{ $performance['name']}}</p>
         <p class="performance-text">金額：{{ $performance['price']}}円</p>
         <p class="performance-text">出演者：{{ $performance['member']}}</p>
@@ -41,7 +44,10 @@
                             <label for='ticket' calss="bookform-text">日時</label>
                             <div class='book-date'>
                                     <input type="checkbox" name='date' value="{{ $performance['date1']}}">{{ $performance['date1']}}
+                                    @if(!empty($performance['date2']))
                                     <input type="checkbox" name='date' value="{{ $performance['date2']}}">{{ $performance['date2']}}
+                                    @else
+                                    @endif
                             </div>
                             <input type="hidden" name='pfm_id' value="{{ $id }}">
                             <div class='row'>

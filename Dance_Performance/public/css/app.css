@@ -397,6 +397,14 @@ th {
     background-color: #fff;
     border-color: #fadd37;
 }
+.mmm {
+    width: 10%;
+    height: 30%;
+    margin-left: 45%;
+    margin-top: 2%;
+    background-color: #fff;
+    border-color: #fadd37;
+}
 .back-box {
     width: 100%;
 }
@@ -421,24 +429,75 @@ th {
     flex-flow: column;
 }
 .ditail-btn {
-    margin-bottom: 18%;
+    margin-bottom: 19px;
     border-color: #fadd37;
     background-color: #fff;
     width: 100px;
-    height: 40px;
+    height: 30px;
     font-size: 15px;
 }
 .profile-box2 {
     display: flex;
-    width: 60%;
-    margin-left: 20%;
+    width: 40%;
+    margin-left: 30%;
     margin-top: 5%;
     border: solid;
-    border-color: #fadd37;
 }
 #icon2 {
     width: 150px;
     height: 150px;
     object-fit: contain;
 
+}
+.profile-item {
+    display: flex;
+    flex-flow: column;
+}
+.profile-container {
+    width: 70%;
+}
+.proedi-btn {
+    border-color: #fadd37;
+    background-color: #fff;
+    width: 30%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 100%;
+}
+.profile-control {
+    width: 150%;
+}
+.editbook {
+    width: 50%;
+    margin-left: 25%;
+    border: solid;
+    border-color: #797e89;
+}
+.mnmn {
+    border-color: #fadd37;
+    background-color: #fff;
+    width: 30%;
+    margin-bottom: 5%;
+    margin-left: 80%;
+}
+.edit-box {
+    width: 50%;
+}
+.ed-btn1 {
+    border-color: #fadd37;
+    background-color: #fff;
+    width: 30%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+.ed-btn-box {
+    display: flex;
+    justify-content: space-around;
+}
+.ed-btn2 {
+    border-color: #377efa;
+    background-color: #fff;
+    width: 20%;
+    margin-left: 40%;
+    margin-bottom: 1%;
 }

@@ -13,7 +13,10 @@
         <a href="{{url('/')}}">＜　一覧に戻る</a>
         <p class="pfm-title">{{ $performance['title']}}</p>
         <p class="performance-text">日時：{{ $performance['date1']->format('Y-m-d H:i')}}</p>
+        @if(!empty($performance['date2']))
         <p class="performance-text">日時：{{ $performance['date2']->format('Y-m-d H:i')}}</p>
+        @else
+        @endif
         <p class="performance-text">会場：{{ $performance['name']}}</p>
         <p class="performance-text">金額：{{ $performance['price']}}</p>
         <p class="performance-text">出演者：{{ $performance['member']}}</p>
@@ -30,12 +33,15 @@
             <p>{{ $ticket['total_ticket'] }}枚</p>
             @endforeach
         </div>
+        @if(!empty($performance['date2']))
         <div class="date2">
             <p>{{ $performance['date2']->format('Y-m-d H:i')}}</p>
             @foreach($date2 as $ticket)
             <p>{{ $ticket['total_ticket'] }}枚</p>
             @endforeach
         </div>
+        @else
+        @endif
     </div>
 </div>
 <div class="ditail-box">
@@ -48,6 +54,7 @@
                     <th scope='col'>メールアドレス</th>
                     <th scope='col'>チケット枚数</th>
                     <th scope='col'>金額</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -58,15 +65,13 @@
                     <th scope='col'>{{ $book['email']}}</th>
                     <th scope='col'>{{ $book['ticket']}}</th>
                     <th scope='col'>{{ $book['ticket'] * $performance['price']}}円</th>
+                    <th><a href="{{ route('book.edit',['book' => $book['id']])}}">変更</a></th>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
     <div class="ditail-2">
-        @foreach($bookid as $id)
-            <a href="{{ route('book.edit',['book' => $id['id']])}}"><button class="ditail-btn">変更</button></a>
-        @endforeach
     </div>
 </div>
 @endsection

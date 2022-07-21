@@ -32,7 +32,7 @@
                                 <option value="{{ $venue['id']}}">{{ $venue['name'] }}</option>
                                 @endforeach
                             </select>
-                            <label for='member' class='mt-2'>出演者<p class="space">※スペースを入力しないでください</p></label>
+                            <label for='member' class='mt-2'>出演者</label>
                                 <textarea class='form-control' name='member'>{{ old('member') }}</textarea>
                             <label for='comment' class='mt-2'>説明</label>
                                 <textarea class='form-control' name='comment'>{{ old('comment') }}</textarea>

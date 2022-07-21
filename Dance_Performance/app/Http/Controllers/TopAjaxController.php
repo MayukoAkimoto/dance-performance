@@ -10,7 +10,7 @@ class TopAjaxController extends Controller
 {
     public function bookmore($number){
         $performance = new Performance;
-        $all = $performance->where('category',0)->offset($number)->limit(10)->get();
+        $all = $performance->where('category',0)->orderBy('date1', 'asc')->offset($number)->limit(10)->get();
         \Log::debug($number);
         $json = json_encode($all);
         return $json; 

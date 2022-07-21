@@ -21,10 +21,10 @@
             <tr>
                 <th scope='col'>{{ $performance['date1']->format('Y-m-d H:i')}}
                 @if(!empty($performance['date2']))
-                /
+                /{{ $performance['date2']->format('Y-m-d H:i')}}
                 @else
                 @endif
-                {{ $performance['date2']->format('Y-m-d H:i')}}</th>
+                </th>
                 <th scope='col'>{{ $performance['title']}}</th>
                 <th scope='col'>
                     <a href="{{ route('performance.detail',['performance' => $performance['id']])}}">詳細</a>
@@ -38,7 +38,7 @@
         </div>
     </tbody>
 </table>
-<div class="more-box">
+<div class="morebox">
     <button class="more">もっと見る</button>
 </div>
 @endsection

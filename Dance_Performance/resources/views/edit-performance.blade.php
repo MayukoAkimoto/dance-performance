@@ -8,8 +8,9 @@
     @else
         <img src="{{ asset($result['image']) }}" id="pfm-img" >
     @endif
+    <div>
     <a href="{{url('/')}}">＜　一覧に戻る</a>
-
+    </div>
 </div>
 <div class="pfm-text">
 <div>
@@ -29,9 +30,9 @@
                             <label for='title'>タイトル</label>
                                 <input type='text' class='form-control' name='title' value="{{$result['title']}}"/>
                             <label for='date1' class='mt-2'>日付</label>
-                                <input type='datetime-local' class='form-control' name='date1' id='date1' value="{{$result['date1']}}"/>
+                                <input type='datetime-local'  class='form-control' name='date1' id='date1' value="{{$result['date1']}}"/>
                             <label for='date2' class='mt-2'>日付</label>
-                                <input type='datetime-local' class='form-control' name='date2' id='date2' value="{{$result['date2']}}"/>
+                                <input type='datetime-local'  class='form-control' name='date2' id='date2' value="{{$result['date2']}}"/>
                             <label for='price' class='mt-2'>金額</label>
                                 <input type='text' class='form-control' name='price' value="{{$result['price']}}"/>
                             <label for='venue' class='mt-2'>会場</label>
@@ -45,7 +46,7 @@
                                     @endif
                                 @endforeach
                             </select>
-                            <label for='member' class='mt-2'>出演者<p class="space">※スペースを入力しないでください</p></label>
+                            <label for='member' class='mt-2'>出演者</label>
                                 <textarea class='form-control' name='member'>{{$result['member']}}</textarea>
                             <label for='comment' class='mt-2'>説明</label>
                                 <textarea class='form-control' name='comment'>{{$result['comment']}}</textarea>

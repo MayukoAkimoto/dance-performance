@@ -17,7 +17,12 @@
     <input type="hidden" id="count" value=10>
     @foreach($performances as $performance)
         <tr>
-            <th scope='col'>{{ $performance['date1']->format('Y-m-d H:i')}}{{ $performance['date2']->format('Y-m-d H:i')}}</th>
+            <th scope='col'>{{ $performance['date1']->format('Y-m-d H:i')}}
+            @if(!empty($performance['date2']))
+            /{{ $performance['date2']->format('Y-m-d H:i')}}
+                @else
+                @endif
+            </th>
             <th scope='col'>{{ $performance['title']}}</th>
             <th scope='col'>
                 <a href="{{ route('comment.detail',['performance' => $performance['id']]) }}">詳細</a>

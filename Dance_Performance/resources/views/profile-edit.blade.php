@@ -8,7 +8,7 @@
             <img src="{{ asset($user['image']) }}" id="icon2" >
         @endif
     </div>
-  <div>
+  <div calss="profile-container">
     @if($errors->any())
       <div class="alert">
     @foreach($errors->all() as $message)
@@ -16,24 +16,23 @@
     @endforeach
       </div>
     @endif
-    <form action="{{ route('edit.profile',['user' => Auth::user()->id]) }}" enctype="multipart/form-data" method="post" class="form">
+    <form action="{{ route('edit.profile',['user' => Auth::user()->id]) }}" enctype="multipart/form-data" method="post" class="">
     @csrf
       <div class="profile-item">
         <label for='name'>名前</label>
-        <input type='text' class='login-control' name='name' value="{{$user['name']}}"/>
+        <input type='text' class='profile-control' name='name' value="{{$user['name']}}"/>
       </div>
       <div class="profile-item">
-        <label for='email' class='mt-2'>メールアドレス</label>
-        <input type='text' class='login-control' name='email' value="{{$user['email']}}"/>
+        <label for='email' >メールアドレス</label>
+        <input type='text' class='profile-control' name='email' value="{{$user['email']}}"/>
       </div>
       <div class="profile-item">
-        <label for='image' class='mt-2'>写真</label>
+        <label for='image' >写真</label>
         <input type="file" name="image">
       </div>
       <input type="hidden" name='password' value="{{$user['password']}}">
       <div class="login-btn">
-        <button type='submit' class='log-btn'>更新</button>
-      </div>
+        <button type='submit' class='proedi-btn'>更新</button>
     </form>
   </div>
 </div>

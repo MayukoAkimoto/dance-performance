@@ -5,7 +5,7 @@
     <h4 class="title" >公演の感想</h4>
 </div>
 <div id="serch">
-    <form action="{{ route('book.serch') }}" method="GET" class="serch-form">
+    <form action="{{ route('comment.serch') }}" method="GET" class="serch-form">
         <input type="text" name="keyword" value="" class="serch-box">
         <input type='date'  name='date' value="" class="serch-date">
         <input type="submit" value="検索" class="serch-bottun">
@@ -32,7 +32,10 @@
                 <div class="text">
                     <p class="title">{{ $post['title']}}</p>
                     <p class="date">{{ $post['date1']->format('Y-m-d H:i')}}</p>
+                    @if(!empty($post['date2']))
                     <p class="date">{{ $post['date2']->format('Y-m-d H:i')}}</p>
+                    @else
+                    @endif
                     <a href="{{ route('comment.detail',['performance' => $post['id']]) }}"><button class="book-btn">詳細</button></a>
                 </div>
             </th>

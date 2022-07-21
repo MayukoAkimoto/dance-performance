@@ -64,8 +64,8 @@ Route::group(['middleware' => 'auth'],function(){
 
     Route::get('/create_book/{performance}',[RegistrationController::class, "createBookForm"])->name('book.create');
     Route::post('/create_book/{performance}',[RegistrationController::class, "createBook"]);
-    Route::get('/book_edit/{book}',[RegistrationController::class, "bookEditForm"])->name('edit.book');
-    Route::post('/book_edit/{book}',[RegistrationController::class, "bookEdit"]);
+    Route::get('/book_edit/{book}',[RegistrationController::class, "UserbookEditForm"])->name('user.book.edit');
+    Route::post('/book_edit/{book}',[RegistrationController::class, "UserbookEdit"]);
     
     Route::get('/create_comment/{performance}',[RegistrationController::class, "createCommentForm"])->name('comment.create');
     Route::post('/create_comment/{performance}',[RegistrationController::class, "createComment"]);

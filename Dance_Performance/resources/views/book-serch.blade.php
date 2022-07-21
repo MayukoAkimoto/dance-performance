@@ -32,7 +32,10 @@
                 <div class="text">
                     <p class="title">{{ $post['title']}}</p>
                     <p class="date">{{ $post['date1']->format('Y-m-d H:i')}}</p>
+                    @if(!empty($post['date2']))
                     <p class="date">{{ $post['date2']->format('Y-m-d H:i')}}</p>
+                    @else
+                    @endif
                     <a href="{{ route('book.detail',['performance' => $post['id']]) }}"><button class="book-btn">詳細</button></a>
                 </div>
             </th>

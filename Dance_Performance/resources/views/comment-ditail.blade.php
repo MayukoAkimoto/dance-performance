@@ -12,7 +12,10 @@
     <div class="pfm-text">
         <p class="pfm-title">{{ $performance['title']}}</p>
         <p class="performance-text">日時：{{ $performance['date1']->format('Y-m-d H:i')}}</p>
+        @if(!empty($performance['date2']))
         <p class="performance-text">日時：{{ $performance['date2']->format('Y-m-d H:i')}}</p>
+        @else
+        @endif
         <p class="performance-text">会場：{{ $performance['name']}}</p>
         <p class="performance-text">金額：{{ $performance['price']}}</p>
         <p class="performance-text">出演者：{{ $performance['member']}}</p>
@@ -21,7 +24,7 @@
 </div>
 <div class="btns">
     <a href="{{route('comment.top')}}">＜　一覧に戻る</a>
-    <a href="{{ route('comment.create',['performance' => $performance['id'] ]) }}"><button class="com-btn">感想を投稿する</button></a>
+    <a href="{{ route('comment.create',['performance' => $id['id'] ]) }}"><button class="com-btn">感想を投稿する</button></a>
 </div>
 <table class="comment">
     <tbody>

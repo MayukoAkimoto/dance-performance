@@ -29,7 +29,10 @@
                 <div class="text">
                     <p class="title">{{ $performance['title']}}</p>
                     <p class="date">{{ $performance['date1']->format('Y-m-d H:i')}}</p>
+                    @if(!empty($performance['date2']))
                     <p class="date">{{ $performance['date2']->format('Y-m-d H:i')}}</p>
+                    @else
+                    @endif
                     <a href="{{ route('comment.detail',['performance' => $performance['id']]) }}"><button class="book-btn">詳細</button></a>
                 </div>
             </th>

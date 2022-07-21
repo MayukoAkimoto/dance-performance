@@ -26,24 +26,23 @@
                     <th scope='col'>日時</th>
                     <th scope='col'>チケット枚数</th>
                     <th scope='col'>金額</th>
+                    <th scope='col'></th>
+
                 </tr>
             </thead>
             <tbody>
-                @foreach($books as $book)
+            @foreach($books as $book)
                 <tr>
-                    <th scope='col'><a href="{{ route('book.detail',['performance' => $book['id']]) }}">{{ $book['title'] }}</a></th>
-                    <th scope='col'>{{ $book['date']->format('Y-m-d H:i') }}</th>
+                    <th scope='col'>{{ $book['title'] }}</a></th>
+                    <th scope='col'>{{ $book['date'] }}</th>
                     <th scope='col'>{{ $book['ticket'] }}</th>
                     <th scope='col'>{{ $book['ticket'] * $book['price'] }}円</th>
+                    <th><a href="{{ route('user.book.edit',['book' => $book['id']]) }}">変更</a></th>
                 </tr>
                 @endforeach
+
             </tbody>
         </table>
-    </div>
-    <div class="ditail-2">
-        @foreach($a as $b)
-            <a href="{{ route('edit.book',['book' => $b['id']]) }}"><button class="ditail-btn">変更</button></a>
-        @endforeach
     </div>
 </div>
 @endsection

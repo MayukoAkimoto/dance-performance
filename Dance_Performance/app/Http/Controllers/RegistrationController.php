@@ -106,13 +106,16 @@ class RegistrationController extends Controller
             $file_name = $request->file('image')->getClientOriginalName();
             $request->file('image')->storeAs('public/' . $dr, $file_name);
         }
-        // $performances = new Performance;
-        // $record = $performances->find($performance['id']);
+
+        $request->date1 = date( 'Y-m-d H:i:s', strtotime( $request->date1 ) );
+        $request->date2 = date( 'Y-m-d H:i:s', strtotime( $request->date2 ) );
+
         $columns = ['title','date1','date2','venue_id','price','member','comment'];
 
         foreach($columns as $column){
             $performance->$column = $request->$column;
         }
+
         if(!empty($request->image)) {
             $performance->image = 'storage/' . $dr . '/' . $file_name;
         }
@@ -156,7 +159,7 @@ class RegistrationController extends Controller
         $books = new Book;
         $performances = new Performance;
         $result = $books->join('users','books.user_id','users.id')->find($book['id'])->toArray();
-        $performance = $performances->where('id',$result['pfm_id'])->get()->toArray();
+        $performance = $performances->join('venues','performances.venue_id','venues.id')->where('performances.id',$result['pfm_id'])->get()->toArray();
         return view('edit-book',[
             'id' => $id,
             'result' => $result,
@@ -164,8 +167,6 @@ class RegistrationController extends Controller
         ]);
     }
     public function editBook(Book $book,CreateBook $request){
-        // $books = new Book;
-        // $record = $books->find($book['id']);
         $columns = ['pfm_id','user_id','ticket','date'];
         foreach($columns as $column){
             $book->$column = $request->$column;
@@ -212,40 +213,27 @@ class RegistrationController extends Controller
     }
     //ユーザーの予約編集
     //予約を編集
-    public function bookEditForm(Book $book){
+    public function UserbookEditForm(Book $book){
         $id = $book['id'];
         $books = new Book;
         $performances = new Performance;
         $result = $books->join('users','books.user_id','users.id')->find($book['id'])->toArray();
-        $performance = $performances->where('id',$result['pfm_id'])->get()->toArray();
+        $performance = $performances->join('venues','performances.venue_id','venues.id')->where('performances.id',$result['pfm_id'])->get()->toArray();
         return view('book-edit',[
             'id' => $id,
             'result' => $result,
             'performance' => $performance,
         ]);
     }
-    public function bookEdit(Book $book,CreateBook $request){
-        // $books = new Book;
-        // $record = $books->find($book['id']);
+    public function UserbookEdit(Book $book,CreateBook $request){
         $columns = ['pfm_id','user_id','ticket','date'];
         foreach($columns as $column){
             $book->$column = $request->$column;
         }
-    
-        // $record->pfm_id = $request->pfm_id;
-        // $record->user_id = $request->user_id;
-        // $record->ticket = $request->ticket;
-        // $record->date = $request->date.':00';
-
-        // $requestData = $book->all();
-        // $requestData['date'] .= ':00';
-        // $event = new Book($requestData);
-        // var_dump($event);
-        // $event->save();
 
         $book->save();
 
-        return redirect()->route('profile', [$book[Auth::user()->id]]);
+        return redirect()->route('profile', [$book['user_id']]);
 
     }
 

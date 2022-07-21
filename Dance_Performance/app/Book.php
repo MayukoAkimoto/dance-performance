@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    protected $fillable = ['pfm_id','user_id','date1','date2'];
+    protected $fillable = ['pfm_id','user_id','date'];
     protected $casts = [
         'date' => 'datetime:Y-m-d H:i',
     ];

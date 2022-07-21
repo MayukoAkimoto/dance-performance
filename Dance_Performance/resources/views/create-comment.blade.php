@@ -12,7 +12,10 @@
     <div class="pfm-text">
         <p class="pfm-title">{{ $performance['title']}}</p>
         <p class="performance-text">日時：{{ $performance['date1']->format('Y-m-d H:i')}}</p>
+        @if(!empty($performance['date2']))
         <p class="performance-text">日時：{{ $performance['date2']->format('Y-m-d H:i')}}</p>
+        @else
+        @endif
         <p class="performance-text">会場：{{ $performance['name']}}</p>
         <p class="performance-text">金額：{{ $performance['price']}}</p>
         <p class="performance-text">出演者：{{ $performance['member']}}</p>

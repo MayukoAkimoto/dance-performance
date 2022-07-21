@@ -26,11 +26,17 @@ function ajaxManegertop() {
       dataType: 'json',
   }).done(function(data){
         $.each(data,function(key, value){
-          add_content += "<tr><th scope='col'>"+value.date1+"/"+value.date2+"</th>"
+          if(value.date2 === null){
+          add_content += "<tr><th scope='col'>"+value.date1+"</th>"
                         +"<th scope='col'>"+value.title+"</th>"
                         +"<th scope='col'><a href='http://127.0.0.1:8000/performance/"+value.id+"/detail'>詳細</a></th>"
                         +"<th scope='col'><a href='http://127.0.0.1:8000/edit_performance/"+value.id+"'>更新</a></th></tr>";
-          add_id += "<p>"+value.id+"</p>";
+          }else{
+            add_content += "<tr><th scope='col'>"+value.date1+"/"+value.date2+"</th>"
+            +"<th scope='col'>"+value.title+"</th>"
+            +"<th scope='col'><a href='http://127.0.0.1:8000/performance/"+value.id+"/detail'>詳細</a></th>"
+            +"<th scope='col'><a href='http://127.0.0.1:8000/edit_performance/"+value.id+"'>更新</a></th></tr>";
+          }
 
       })
       $("#content").append(add_content);
